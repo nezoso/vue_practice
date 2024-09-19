@@ -7,6 +7,9 @@ const app = createApp(App);
 app.component('MyGlobalComponent', MyGlobalComponent); 
 const mountedApp = app.mount('#app'); -->
 <template>
+
+
+      <HelloWorld @delete_event='delete_single' @show_data_emit="emit_show_data" @custom_event_2="emit_event_method"/>
       <MyComponent />
       <MyHeader />
       <input :class="ObjClass" name="empty_input" v-model="get_input_value" @click="getValue()" />
@@ -68,16 +71,42 @@ const mountedApp = app.mount('#app'); -->
           slot test/ slot test slot test slot test slot test slot test slot test
           <template #slot_name><div style="color:blue">this is consist of name</div></template>
       </MyLocalComponent>
+
 </template>
 
 <script>
 
   import MyLocalComponent from './components/MyLocalComponent.vue';
-
+  import HelloWorld from './components/HelloWorld.vue';
 
  export default{
    components : {
-      MyLocalComponent
+      MyLocalComponent,
+      HelloWorld
+    },
+    // provide:{
+    //   array_list : [{name:'mehdi',age:'24'},{name:'mehdi',age:'25'}],
+    //   home_list : [{product:'apple',category:'phone'},{product:'laptop',category:'technology'}],
+      // helloWord_data : [{user:'admin',permission:'admin',authrized:'true'}
+      //                   ,{
+      //                     user:'staff',permission:'staff',authrized:'false'
+      //                   },{
+      //                     user:'user',permission:'none',authrized:'none'
+      //                   }],
+
+    // },data in provide:{} is not chage_able for update
+    provide(){
+      return {
+        array_list : [{name:'mehdi',age:'24'},{name:'mehdi',age:'25'}],
+         home_list : [{product:'apple',category:'phone'},{product:'laptop',category:'technology'}],
+          helloWord_data : [{user:'admin',permission:'admin',authrized:'true'}
+                        ,{
+                          user:'staff',permission:'staff',authrized:'false'
+                        },{
+                          user:'user',permission:'none',authrized:'none'
+                        }],
+
+      }
     },
   data()
   {
@@ -191,6 +220,17 @@ const mountedApp = app.mount('#app'); -->
             {
                 console.log(this.checked);
             },
+          emit_event_method(name,val){
+              console.log(name,val);
+          },
+          emit_show_data(val,name)
+          {
+            console.log(val,name);
+          },
+          delete_single(id)
+          {
+            console.log(id);
+          }
       },
 }
    

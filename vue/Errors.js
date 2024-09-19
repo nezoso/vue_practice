@@ -6,3 +6,9 @@ this is test project
 
 
 i can not write methods after a long time study vue
+	solve:practice from easiest ...step by step 
+
+to load components local and global 	
+	Erorr : .... 
+		Solve : set your index.js truely ...  
+
